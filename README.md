@@ -1,1 +1,1 @@
-# Aciton Recommendaton module for Magento 2
+# Action Recommendation module for Magento 2
