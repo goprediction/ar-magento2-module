@@ -5,10 +5,29 @@ define(['uiComponent', 'goPredictionApi', 'ko', 'jquery', 'goPredictionOwlCarous
     ko.bindingHandlers.afterRender = {
         init: function () {
 
-            if ($('#mp-list-items li').length === 0) {
-                return;
-            }
+        }
+    };
 
+    return Component.extend({
+        initialize: function () {
+            this._super();
+            this.recommendations = ko.observableArray([]);
+            this.init = false;
+
+            goPredictionApi.publicAccessKey = this.publicAccessKey;
+
+            this.sendAction();
+            this.loadRecommendations();
+        },
+
+        initObservable: function () {
+            this._super()
+                .observe('recommendations');
+
+            return this;
+        },
+
+        initCarousel: function() {
             $('#mp-list-items').owlCarousel({
                 items: 8,
                 dots: false,
@@ -18,6 +37,8 @@ define(['uiComponent', 'goPredictionApi', 'ko', 'jquery', 'goPredictionOwlCarous
                 navSpeed: 100,
                 autoplaySpeed: 100,
                 autoplayTimeout: 15000,
+                mouseDrag: false,
+                touchDrag: true,
                 responsive:{
                     0:{
                         items:1,
@@ -37,25 +58,6 @@ define(['uiComponent', 'goPredictionApi', 'ko', 'jquery', 'goPredictionOwlCarous
                     }
                 }
             });
-        }
-    };
-
-    return Component.extend({
-        initialize: function () {
-            this._super();
-            this.recommendations = ko.observableArray([]);
-
-            goPredictionApi.publicAccessKey = this.publicAccessKey;
-
-            this.sendAction();
-            this.loadRecommendations();
-        },
-
-        initObservable: function () {
-            this._super()
-                .observe('recommendations');
-
-            return this;
         },
 
         sendAction: function() {
@@ -87,6 +89,16 @@ define(['uiComponent', 'goPredictionApi', 'ko', 'jquery', 'goPredictionOwlCarous
                 for (var i = 0; i < data.items.length; i++) {
                     self.recommendations.push(data.items[i]);
                 }
+
+                (function _loop (i) {
+                    setTimeout(function () {
+                        if ($('#mp-list-items li').length === data.items.length && !self.init) {
+                            self.init = true;
+                            self.initCarousel();
+                        }
+                        if (--i) _loop(i);
+                    }, 100)
+                })(100);
             });
         }
     });
