@@ -1,0 +1,11 @@
+<?php /** @var $block \GoPrediction\ActionRecommendation\Block\Checkout */?>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "GoPrediction_ActionRecommendation/js/checkout": {
+            "publicAccessKey": "<?= $block->getHelper()->getPublicAccessKey() ?>"
+        }
+    }
+}
+</script>

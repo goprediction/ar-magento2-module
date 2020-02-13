@@ -17,6 +17,7 @@ define(['uiComponent', 'goPredictionApi', 'ko', 'jquery', 'goPredictionOwlCarous
             goPredictionApi.publicAccessKey = this.publicAccessKey;
 
             this.sendAction();
+            this.sendView();
             this.loadRecommendations();
         },
 
@@ -64,7 +65,15 @@ define(['uiComponent', 'goPredictionApi', 'ko', 'jquery', 'goPredictionOwlCarous
             goPredictionApi.action({
                 "customer": goPredictionApi._getCustomerIdentifier(),
                 "product_id": this.productId
-            }, function (response) {});
+            });
+        },
+
+        sendView: function() {
+            goPredictionApi.view({
+                "customer": goPredictionApi._getCustomerIdentifier(),
+                "product_id": this.productId,
+                "is_referrer": goPredictionApi._isReferrer() ? 1 : 0
+            });
         },
 
         loadRecommendations: function () {

@@ -15,7 +15,7 @@
                 <ol  data-bind="foreach: recommendations, afterRender" class="products list items product-items owl-carousel owl-theme" id="mp-list-items">
                     <li class="item product product-item" >
                         <div class="product-item-info">
-                            <a data-bind="attr: {'href': '/' + $data.additional_fields.url_key + '.html'}" class="product photo product-item-photo">
+                            <a data-bind="attr: {'href': '/' + $data.additional_fields.url_key + '.html?gpr=1'}" class="product photo product-item-photo">
                             <span class="product-image-container" style="width:152px;">
                                 <span class="product-image-wrapper" style="padding-bottom: 125%;">
                                     <img data-bind="attr: {'src': '/pub/media/catalog/product/' + $data.additional_fields.image}" class="product-image-photo" max-width="152" max-height="190"></span>

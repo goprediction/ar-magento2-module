@@ -1,19 +1,21 @@
 <div id="recommendations" data-bind="scope: 'recommendations'" style="display: none;">
     <!-- ko template: getTemplate() --><!-- /ko -->
 
+    <?php /** @var $block \GoPrediction\ActionRecommendation\Block\Product\View */?>
+
     <script type="text/x-magento-init">
         {
             "#recommendations": {
                 "Magento_Ui/js/core/app": {
                     "components": {
                         "recommendations": {
-                            "component": "GoPrediction_ActionRecommendation/js/recommendations",
-                            "template": "GoPrediction_ActionRecommendation/recommendations",
+                            "component": "GoPrediction_ActionRecommendation/js/product/view",
+                            "template": "GoPrediction_ActionRecommendation/product/view",
                             "config": {
                                 "productId": <?= $block->getCurrentProduct()->getId() ?>,
-                                "publicAccessKey": "<?= $block->getPublicAccessKey() ?>",
-                                "label": "<?= $block->getLabel() ?>",
-                                "currentCurrencySymbol": "<?= $block->getCurrentCurrencySymbol() ?>"
+                                "publicAccessKey": "<?= $block->getHelper()->getPublicAccessKey() ?>",
+                                "label": "<?= $block->getHelper()->getLabel() ?>",
+                                "currentCurrencySymbol": "<?= $block->getHelper()->getCurrentCurrencySymbol() ?>"
                             }
                         }
                     }
