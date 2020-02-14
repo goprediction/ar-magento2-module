@@ -72,7 +72,7 @@ class Feed extends Action
         $collection->joinAttribute('visibility', 'catalog_product/visibility', 'entity_id', null, 'inner');
         $collection->joinAttribute('image', 'catalog_product/image', 'entity_id', null, 'left');
         $collection->joinAttribute('price', 'catalog_product/price', 'entity_id', null, 'inner');
-        $collection->joinAttribute('special_price', 'catalog_product/special_price', 'entity_id', null, 'left');
+        $collection->joinAttribute('special_price', 'catalog_product/special_price', 'entity_id', null, 'inner');
         $collection->joinAttribute('name', 'catalog_product/name', 'entity_id', null, 'inner');
         $collection->joinAttribute('url_key', 'catalog_product/url_key', 'entity_id', null, 'inner');
 
