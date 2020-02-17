@@ -26,13 +26,15 @@
                                     <a data-bind="text: $data.additional_fields.name" class="product-item-link" title="Maya Tunic" href="http://magento2.local/index.php/maya-tunic.html"></a>
                                 </strong>
 
-                                <div class="price-box price-final_price" data-role="priceBox"><span class="normal-price">
-                                <span class="price-container price-final_price tax weee">
-                                    <span class="price-label">As low as</span>
-                                    <span data-price-type="finalPrice" class="price-wrapper "><span class="price" data-bind="text: parseFloat($data.additional_fields.price).toFixed(2).toString().replace('.', ',') + ' ' + $parent.currentCurrencySymbol">'</span></span>
+                                <if args="$data.additional_fields.price">
+                                    <div class="price-box price-final_price" data-role="priceBox"><span class="normal-price">
+                                    <span class="price-container price-final_price tax weee">
+                                        <span class="price-label">As low as</span>
+                                        <span data-price-type="finalPrice" class="price-wrapper "><span class="price" data-bind="text: parseFloat($data.additional_fields.price).toFixed(2).toString().replace('.', ',') + ' ' + $parent.currentCurrencySymbol">'</span></span>
+                                        </span>
                                     </span>
-                                </span>
-                                </div>
+                                    </div>
+                                </if>
                             </div>
                         </div>
                     </li>
